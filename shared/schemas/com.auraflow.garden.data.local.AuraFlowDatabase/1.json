@@ -1,0 +1,194 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "34c2da64439225484a9f153d156b742a",
+    "entities": [
+      {
+        "tableName": "player_progress",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `highestStageCleared` INTEGER NOT NULL, `currentStreak` INTEGER NOT NULL, `longestStreak` INTEGER NOT NULL, `lastPlayedDate` TEXT NOT NULL, `hasWardenPass` INTEGER NOT NULL, `totalPerfectClears` INTEGER NOT NULL, `totalCrescendos` INTEGER NOT NULL, `selectedAuraSkin` TEXT NOT NULL, `selectedLumaSkin` TEXT NOT NULL, `wardenName` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "highestStageCleared",
+            "columnName": "highestStageCleared",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentStreak",
+            "columnName": "currentStreak",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longestStreak",
+            "columnName": "longestStreak",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastPlayedDate",
+            "columnName": "lastPlayedDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasWardenPass",
+            "columnName": "hasWardenPass",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalPerfectClears",
+            "columnName": "totalPerfectClears",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalCrescendos",
+            "columnName": "totalCrescendos",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedAuraSkin",
+            "columnName": "selectedAuraSkin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedLumaSkin",
+            "columnName": "selectedLumaSkin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wardenName",
+            "columnName": "wardenName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "stage_results",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stageId` INTEGER NOT NULL, `stars` INTEGER NOT NULL, `score` INTEGER NOT NULL, `energyRemaining` REAL NOT NULL, `elapsedMs` INTEGER NOT NULL, `isPerfectClear` INTEGER NOT NULL, `isCrescendo` INTEGER NOT NULL, `completedAtMs` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stageId",
+            "columnName": "stageId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stars",
+            "columnName": "stars",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "energyRemaining",
+            "columnName": "energyRemaining",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "elapsedMs",
+            "columnName": "elapsedMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPerfectClear",
+            "columnName": "isPerfectClear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isCrescendo",
+            "columnName": "isCrescendo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completedAtMs",
+            "columnName": "completedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "unlocked_cosmetics",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playerId` INTEGER NOT NULL, `cosmeticId` TEXT NOT NULL, `cosmeticType` TEXT NOT NULL, `unlockedAtMs` INTEGER NOT NULL, PRIMARY KEY(`playerId`, `cosmeticId`))",
+        "fields": [
+          {
+            "fieldPath": "playerId",
+            "columnName": "playerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cosmeticId",
+            "columnName": "cosmeticId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cosmeticType",
+            "columnName": "cosmeticType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unlockedAtMs",
+            "columnName": "unlockedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "playerId",
+            "cosmeticId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '34c2da64439225484a9f153d156b742a')"
+    ]
+  }
+}

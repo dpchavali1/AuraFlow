@@ -1,0 +1,17 @@
+.gradle/
+.idea/
+build/
+*.iml
+local.properties
+*.keystore
+!debug.keystore
+.DS_Store
+*.xcworkspace/
+Pods/
+*.xcuserstate
+xcuserdata/
+DerivedData/
+.build/
+iosApp/Pods/
+iosApp/*.xcworkspace/
+shared/.cinterop/

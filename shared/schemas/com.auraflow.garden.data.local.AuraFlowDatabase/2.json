@@ -1,0 +1,253 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "bb329b2c4dae24b6f15b61f33bea545d",
+    "entities": [
+      {
+        "tableName": "player_progress",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `highestStageCleared` INTEGER NOT NULL, `currentStreak` INTEGER NOT NULL, `longestStreak` INTEGER NOT NULL, `lastPlayedDate` TEXT NOT NULL, `hasWardenPass` INTEGER NOT NULL, `totalPerfectClears` INTEGER NOT NULL, `totalCrescendos` INTEGER NOT NULL, `selectedAuraSkin` TEXT NOT NULL, `selectedLumaSkin` TEXT NOT NULL, `wardenName` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "highestStageCleared",
+            "columnName": "highestStageCleared",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentStreak",
+            "columnName": "currentStreak",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longestStreak",
+            "columnName": "longestStreak",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastPlayedDate",
+            "columnName": "lastPlayedDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasWardenPass",
+            "columnName": "hasWardenPass",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalPerfectClears",
+            "columnName": "totalPerfectClears",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalCrescendos",
+            "columnName": "totalCrescendos",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedAuraSkin",
+            "columnName": "selectedAuraSkin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedLumaSkin",
+            "columnName": "selectedLumaSkin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wardenName",
+            "columnName": "wardenName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "stage_results",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stageId` INTEGER NOT NULL, `stars` INTEGER NOT NULL, `score` INTEGER NOT NULL, `energyRemaining` REAL NOT NULL, `elapsedMs` INTEGER NOT NULL, `isPerfectClear` INTEGER NOT NULL, `isCrescendo` INTEGER NOT NULL, `completedAtMs` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stageId",
+            "columnName": "stageId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stars",
+            "columnName": "stars",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "energyRemaining",
+            "columnName": "energyRemaining",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "elapsedMs",
+            "columnName": "elapsedMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPerfectClear",
+            "columnName": "isPerfectClear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isCrescendo",
+            "columnName": "isCrescendo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completedAtMs",
+            "columnName": "completedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "unlocked_cosmetics",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playerId` INTEGER NOT NULL, `cosmeticId` TEXT NOT NULL, `cosmeticType` TEXT NOT NULL, `unlockedAtMs` INTEGER NOT NULL, PRIMARY KEY(`playerId`, `cosmeticId`))",
+        "fields": [
+          {
+            "fieldPath": "playerId",
+            "columnName": "playerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cosmeticId",
+            "columnName": "cosmeticId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cosmeticType",
+            "columnName": "cosmeticType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unlockedAtMs",
+            "columnName": "unlockedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "playerId",
+            "cosmeticId"
+          ]
+        }
+      },
+      {
+        "tableName": "blueprints",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `nodesJson` TEXT NOT NULL, `linksJson` TEXT NOT NULL, `gridSize` INTEGER NOT NULL, `createdAtMs` INTEGER NOT NULL, `updatedAtMs` INTEGER NOT NULL, `thumbnailData` BLOB)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nodesJson",
+            "columnName": "nodesJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "linksJson",
+            "columnName": "linksJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gridSize",
+            "columnName": "gridSize",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAtMs",
+            "columnName": "createdAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAtMs",
+            "columnName": "updatedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "thumbnailData",
+            "columnName": "thumbnailData",
+            "affinity": "BLOB"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bb329b2c4dae24b6f15b61f33bea545d')"
+    ]
+  }
+}
