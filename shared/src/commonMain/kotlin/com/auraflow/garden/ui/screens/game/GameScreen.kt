@@ -145,6 +145,7 @@ fun GameScreen(
                     NarratorMessages.streakMilestone(event.days)
                 )
                 is GameEvent.StreakReset -> { /* silent reset */ }
+                is GameEvent.PressureExpired -> { /* energy penalty already applied in ViewModel */ }
             }
         }
     }

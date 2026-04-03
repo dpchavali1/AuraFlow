@@ -13,4 +13,5 @@ sealed class GameEvent {
     data class StreakUpdated(val days: Int) : GameEvent()
     data class StreakMilestone(val days: Int) : GameEvent()
     data object StreakReset : GameEvent()
+    data class PressureExpired(val nodeId: String) : GameEvent()
 }

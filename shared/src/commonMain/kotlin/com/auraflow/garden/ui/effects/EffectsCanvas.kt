@@ -65,10 +65,12 @@ fun EffectsLayer(
         }
     }
 
-    // Fizzle (invalid move)
+    // Fizzle (invalid move) — fizzleAt is normalized 0..1, convert to pixel coords
     LaunchedEffect(fizzleAt) {
         fizzleAt?.let { pos ->
-            if (canvasWidthPx > 0f) particleSystem.emitFizzle(pos.x, pos.y)
+            if (canvasWidthPx > 0f && canvasHeightPx > 0f) {
+                particleSystem.emitFizzle(pos.x * canvasWidthPx, pos.y * canvasHeightPx)
+            }
         }
     }
 

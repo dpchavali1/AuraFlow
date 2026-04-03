@@ -20,7 +20,8 @@ class StageManager(
      * Stage N+1 is unlocked when stage N has been cleared (≥1 star).
      */
     suspend fun isStageUnlocked(stageId: Int): Boolean {
-        return true  // All stages unlocked for development/testing
+        if (stageId <= 1) return true
+        return playerRepository.getBestStars(stageId - 1) >= 1
     }
 
     /**

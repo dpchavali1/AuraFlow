@@ -58,6 +58,10 @@ class LumaViewModel : ViewModel() {
             }
             is GameEvent.StreakUpdated -> { /* no emotion change */ }
             is GameEvent.StreakReset -> { /* no emotion change */ }
+            is GameEvent.PressureExpired -> {
+                setEmotion(LumaEmotion.WORRIED)
+                scheduleReturnToIdle(2000L)
+            }
         }
     }
 

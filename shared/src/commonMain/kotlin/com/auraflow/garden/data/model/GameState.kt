@@ -15,6 +15,10 @@ data class GameState(
     val selectedNodeId: String? = null,
     val crescendoActive: Boolean = false,
     val fizzleAt: Offset? = null,
+    /** Normalized (0–1) countdown progress per unlinked pressure node; 0=fresh, 1=expired */
+    val pressureProgress: Map<String, Float> = emptyMap(),
+    /** Running total of link intersections drawn this attempt */
+    val intersectionCount: Int = 0,
 )
 
 enum class GameStatus {

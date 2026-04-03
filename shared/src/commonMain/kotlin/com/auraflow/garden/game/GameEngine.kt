@@ -93,10 +93,17 @@ object GameEngine {
     fun isSolved(nodes: List<Node>): Boolean = nodes.all { it.isLinked }
 
     /**
-     * Crescendo condition: all nodes linked AND energy fraction >= 0.7
+     * Crescendo condition: all nodes linked, energy fraction >= 0.65, AND zero intersections.
+     * Intersection-free play makes Crescendo harder-earned and more satisfying.
      */
-    fun isCrescendo(nodes: List<Node>, energyRemaining: Float, maxEnergy: Float): Boolean {
-        return isSolved(nodes) && (energyRemaining / maxEnergy.coerceAtLeast(1f)) >= 0.7f
+    fun isCrescendo(
+        nodes: List<Node>,
+        energyRemaining: Float,
+        maxEnergy: Float,
+        intersectionCount: Int = 0,
+    ): Boolean {
+        val fraction = energyRemaining / maxEnergy.coerceAtLeast(1f)
+        return isSolved(nodes) && fraction >= 0.65f && intersectionCount == 0
     }
 
     private fun crossProduct(pi: Offset, pj: Offset, pk: Offset): Float {

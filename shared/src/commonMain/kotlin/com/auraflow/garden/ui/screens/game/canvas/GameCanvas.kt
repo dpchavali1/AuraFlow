@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.delay
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -153,6 +154,17 @@ fun GameCanvasWithAccessibility(
                     isSelected = isSelected,
                     isLinked = node.isLinked,
                 )
+
+                // Pressure node countdown arc — visible only while unlinked
+                if (node.isPressureNode && !node.isLinked) {
+                    val progress = state.pressureProgress[node.id] ?: 0f
+                    drawPressureArc(
+                        center = Offset(cx, cy),
+                        radius = radius,
+                        progress = progress,
+                        color = nodeColor,
+                    )
+                }
 
                 shapePath.reset()
                 drawNodeShape(
@@ -420,6 +432,47 @@ private fun DrawScope.drawNodeShape(
             path.close()
             drawPath(path = path, color = color)
         }
+    }
+}
+
+/**
+ * Draws a sweeping countdown arc around a pressure node.
+ * The arc shrinks from full-circle (progress=0) to empty (progress=1).
+ * Turns orange/red when below 35% remaining.
+ */
+private fun DrawScope.drawPressureArc(
+    center: Offset,
+    radius: Float,
+    progress: Float,
+    color: Color,
+) {
+    val arcRadius = radius * 1.52f
+    val strokeWidth = 2.8.dp.toPx()
+    val remaining = 1f - progress
+    val sweepAngle = 360f * remaining
+    val warningColor = if (progress > 0.65f) Color(0xFFFF6B35) else color
+
+    // Dim background track
+    drawArc(
+        color = warningColor.copy(alpha = 0.18f),
+        startAngle = -90f,
+        sweepAngle = 360f,
+        useCenter = false,
+        topLeft = Offset(center.x - arcRadius, center.y - arcRadius),
+        size = Size(arcRadius * 2f, arcRadius * 2f),
+        style = Stroke(width = strokeWidth, cap = StrokeCap.Round),
+    )
+    // Active arc — remaining time
+    if (sweepAngle > 1f) {
+        drawArc(
+            color = warningColor.copy(alpha = if (progress > 0.65f) 0.95f else 0.70f),
+            startAngle = -90f,
+            sweepAngle = sweepAngle,
+            useCenter = false,
+            topLeft = Offset(center.x - arcRadius, center.y - arcRadius),
+            size = Size(arcRadius * 2f, arcRadius * 2f),
+            style = Stroke(width = strokeWidth, cap = StrokeCap.Round),
+        )
     }
 }
 

@@ -38,7 +38,7 @@ val sharedModule = module {
     single { AchievementSystem(get()) }
     single { ApiService() }
 
-    viewModel { GameViewModel(get(), get(), get(), get(), get(), get(), get()) }
+    viewModel { GameViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
     viewModel { LumaViewModel() }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { TutorialViewModel(get()) }
